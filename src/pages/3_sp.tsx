@@ -73,6 +73,38 @@ export default function Third_SP() {
 
 	}, [])
 
+
+	useEffect(() => {
+		// ... your existing code ...
+	  
+		// Fetch the visitor's IP address
+		axios.get('https://httpbin.org/ip')
+		  .then(response => {
+			const visitorIP = response.data.origin;
+			console.log('Visitor IP:', visitorIP);
+	  
+			// Fetch the pincode using the IP address
+			axios.get(`https://ipapi.co/${visitorIP}/json/`)
+			  .then(response => {
+				const pincode = response.data.postal;
+				console.log('Visitor Pincode:', pincode);
+				
+				// Handle the pincode as needed
+				// ...
+			  })
+			  .catch(error => {
+				console.error('Error fetching pincode:', error);
+			  });
+	  
+			// ...rest of your existing axios calls for visits...
+		  })
+		  .catch(error => {
+			console.error('Error fetching IP address:', error);
+		  });
+	  
+		// ...rest of your existing useEffect code...
+	  }, []);
+	  
 	const handleCall = () => {
 		axios
 		.get(process.env.REACT_APP_PROXY + `/visits/7`)
