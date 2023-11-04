@@ -30,7 +30,8 @@ function App() {
           {/* c */}
       
          
-          <Route path = "/spanmed1" element = {<Third_SP />} />
+          <Route path="/spanmed1" element={<Third_SP />} />
+    <Route path="/spanmed1/:pincode" element={<Third_SP />} />
         
           {/* <Route path = "/a" element = {<S />} /> */}
 
